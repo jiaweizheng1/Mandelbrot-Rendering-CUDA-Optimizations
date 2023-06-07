@@ -189,9 +189,26 @@ static void display_double(double xcen, double ycen, double scale,
 #endif
 }
 
+void usage(){
+
+    printf("Usage: benchmark [n] [m] [dim] [max_iter]\n");
+
+    printf("\tn\t\t=\tnumber of blocks (defaults to 512)\n");
+
+    printf("\tm\t\t=\tthreads per block (defaults to 512)\n");
+
+    printf("\tdim\t\t=\twidth/height of canvas in pixels (defaults to 1600)\n");
+
+    printf("\tmax_iter\t=\tmax iterations (defaults to 100)\n\n");
+
+    exit(1);
+
+}
 
 int main(int argc, char** argv){
     cudaError_t err = cudaSuccess;
+    if(argc < 2)
+        usage();
     if (argc >= 2) 
         n = atoi(argv[1]);
     if (argc >= 3) 
