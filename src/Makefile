@@ -4,7 +4,7 @@ LFLAGS 		= -lX11 -lgomp -lm
 XFLAG 		= -D SHOW_X
 BFLAG 		= -D BENCHMARK
 NVCC 		= nvcc
-CUDA_FLAGS 	= -gencode arch=compute_75,code=sm_75 -g
+CUDA_FLAGS 	= -gencode arch=compute_60,code=sm_60 -g
 
 all : fractal  mandelbrot XBenchmark benchmark
 
@@ -21,4 +21,4 @@ fractal: fractal.c gfx.c
 	gcc fractal.c gfx.c -g -Wall --std=c99 -lX11 -lm -o fractal
 
 clean :
-	rm -rf *.o fractal 
+	rm -rf *.o mandelbrot XBenchmark benchmark fractal		
