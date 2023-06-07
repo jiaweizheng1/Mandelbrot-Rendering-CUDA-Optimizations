@@ -1,10 +1,10 @@
 CC 			= gcc
-CFLAGS 		= -Wall -g
+CFLAGS 		= -Wall -g -std=gnu11
 LFLAGS 		= -lX11 -lgomp -lm
 XFLAG 		= -D SHOW_X
 BFLAG 		= -D BENCHMARK
 NVCC 		= nvcc
-CUDA_FLAGS 	= -gencode arch=compute_20,code=sm_20 -g
+CUDA_FLAGS 	= -gencode arch=compute_75,code=sm_75 -g
 
 all : fractal # mandelbrot XBenchmark benchmark
 
