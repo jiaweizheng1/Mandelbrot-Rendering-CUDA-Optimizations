@@ -207,8 +207,10 @@ void usage(){
 
 int main(int argc, char** argv){
     cudaError_t err = cudaSuccess;
+    #ifdef BENCHMARK
     if(argc < 2)
         usage();
+    #endif
     if (argc >= 2) 
         n = atoi(argv[1]);
     if (argc >= 3) 
