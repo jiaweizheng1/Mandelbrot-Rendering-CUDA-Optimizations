@@ -1,0 +1,16 @@
+Blocks: 32 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001405
+Blocks: 64 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001738
+Blocks: 96 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001232
+Blocks: 128 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001287
+Blocks: 160 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001805
+Blocks: 192 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001431
+Blocks: 224 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001434
+Blocks: 256 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001292
+Blocks: 288 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001298
+Blocks: 320 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001619
+Blocks: 352 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001257
+Blocks: 384 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001390
+Blocks: 416 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001331
+Blocks: 448 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001248
+Blocks: 480 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001486
+Blocks: 512 Threads per Block: 512 Size:1000x1000 Depth: 100 Time: 0.001310
