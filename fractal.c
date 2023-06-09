@@ -90,10 +90,10 @@ int main( int argc, char *argv[] )
 
 	// Maximum number of iterations to compute.
 	// Higher values take longer but have more detail.
-	int maxiter=100;
+	int maxiter=1000;
 
 	// Open a new window.
-	gfx_open(1600,1600,"Mandelbrot Fractal");
+	gfx_open(512,512,"Mandelbrot Fractal");
 
 	// Show the configuration, just in case you want to recreate it.
 	printf("coordinates: %lf %lf %lf %lf\n",xmin,xmax,ymin,ymax);
