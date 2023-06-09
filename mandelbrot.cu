@@ -7,7 +7,6 @@
 #include <X11/Xutil.h>
 #include <omp.h>
 
-
 static int dim = 512;
 static int n = 512;
 static int m = 512;
@@ -297,7 +296,18 @@ int main(int argc, char** argv){
 		if ((event.type == KeyPress) &&
 			XLookupString(&event.xkey, text, 255, &key, 0) == 1)
 			if (text[0] == 'q'){
-                scale *= 1.25;
+                Window window_returned;
+                int root_x, root_y;
+                int win_x, win_y;
+                unsigned int mask_return;
+
+
+                XQueryPointer(dpy, win, &window_returned, &window_returned, &root_x, &root_y, &win_x, &win_y, &mask_return);
+
+                xcen = xcen + (win_x/(float)dim - 0.5) * scale;
+                ycen = ycen + (win_y/(float)dim - 0.5) * scale;
+                scale *= 1.1111;
+
                 display_double(xcen, ycen, scale, dev_counts, dev_colors);
             }
 
@@ -305,7 +315,29 @@ int main(int argc, char** argv){
 		if ((event.type == KeyPress) &&
 			XLookupString(&event.xkey, text, 255, &key, 0) == 1)
 			if (text[0] == 'e'){
-                scale *= .80;
+                Window window_returned;
+                int root_x, root_y;
+                int win_x, win_y;
+                unsigned int mask_return;
+
+
+                XQueryPointer(dpy, win, &window_returned, &window_returned, &root_x, &root_y, &win_x, &win_y, &mask_return);
+
+                xcen = xcen + (win_x/(float)dim - 0.5) * scale;
+                ycen = ycen + (win_y/(float)dim - 0.5) * scale;
+                scale *= .90;
+
+                display_double(xcen, ycen, scale, dev_counts, dev_colors);
+            }
+
+        /* Press 'r' to reset */
+		if ((event.type == KeyPress) &&
+			XLookupString(&event.xkey, text, 255, &key, 0) == 1)
+			if (text[0] == 'r'){
+                xcen = -0.5;
+                ycen = 0;
+                scale = 3;
+
                 display_double(xcen, ycen, scale, dev_counts, dev_colors);
             }
 
