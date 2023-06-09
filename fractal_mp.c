@@ -84,7 +84,7 @@ void compute_image( double xmin, double xmax, double ymin, double ymax, int maxi
 }
 
 void Usage (char* prog_name) {
-   fprintf(stderr, "usage: %s <thread_count>\n", prog_name);
+   fprintf(stderr, "usage: %s <thread_count> <dim> <maxIter>\n", prog_name);
    exit(0);
 }  /* Usage */
 
@@ -97,19 +97,21 @@ int main( int argc, char *argv[] )
 	double ymin=-1.0;
 	double ymax= 1.0;
 
-	//int n;
+	int dim;
 	int thread_count;
+	int maxiter;
 
-	if (argc != 2) Usage(argv[0]);
+	if (argc != 4) Usage(argv[0]);
 	thread_count = strtol(argv[1], NULL, 10);
-	//n = strtol(argv[2], NULL, 10);
+	dim = strtol(argv[2], NULL, 10);
+	maxiter = strtol(argv[3], NULL, 10);
 
 	// Maximum number of iterations to compute.
 	// Higher values take longer but have more detail.
-	int maxiter=1000;
+	//int maxiter=1000;
 
 	// Open a new window.
-	gfx_open(512,512,"Mandelbrot Fractal");
+	gfx_open(dim,dim,"Mandelbrot Fractal");
 
 	// Show the configuration, just in case you want to recreate it.
 	printf("coordinates: %lf %lf %lf %lf\n",xmin,xmax,ymin,ymax);
@@ -123,7 +125,7 @@ int main( int argc, char *argv[] )
 	compute_image(xmin,xmax,ymin,ymax,maxiter,thread_count);
 	double stop = omp_get_wtime();
 	double elapsed = stop - start;
-	printf("Elapsed time (openmp, %d threads) = %e seconds\n", thread_count, elapsed);
+	printf("Elapsed time (openmp, %d threads, %d size, %d depth) = %e seconds\n", thread_count, dim, maxiter, elapsed);
 
 	while(1) {
 		// Wait for a key or mouse click.
