@@ -8,7 +8,7 @@
 #include <omp.h>
 
 
-static int dim = 1000;
+static int dim = 512;
 static int n = 512;
 static int m = 512;
 static int max_iter = 1000;
@@ -197,7 +197,7 @@ void usage(){
 
     printf("\tm\t\t=\tthreads per block (defaults to 512)\n");
 
-    printf("\tdim\t\t=\twidth/height of canvas in pixels (defaults to 1000)\n");
+    printf("\tdim\t\t=\twidth/height of canvas in pixels (defaults to 512)\n");
 
     printf("\tmax_iter\t=\tmax iterations (defaults to 1000)\n\n");
 
