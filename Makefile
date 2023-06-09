@@ -6,7 +6,7 @@ BFLAG 		= -D BENCHMARK
 NVCC 		= nvcc
 CUDA_FLAGS 	= -gencode=arch=compute_80,code=sm_80 -g
 
-all : fractal  mandelbrot XBenchmark benchmark
+all : fractal  mandelbrot XBenchmark benchmark fractalmp
 
 mandelbrot : mandelbrot.cu
 	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mandelbrot.cu -o mandelbrot $(LFLAGS)
@@ -18,7 +18,10 @@ XBenchmark : mandelbrot.cu
 	$(NVCC) $(CUDA_FLAGS) $(BFLAG) $(XFLAG) mandelbrot.cu -o XBenchmark $(LFLAGS)
 
 fractal: fractal.c gfx.c
-	gcc fractal.c gfx.c -g -Wall --std=c99 -lX11 -lm -o fractal
+	gcc fractal.c gfx.c -g -Wall --std=c99 -lX11 -lm -lgomp -o fractal
+
+fractalmp: fractal_mp.c gfx.c
+	gcc fractal_mp.c gfx.c -g -Wall --std=c99 -lX11 -lm -lgomp -fopenmp -o fractalmp
 
 clean :
-	rm -rf *.o mandelbrot XBenchmark benchmark fractal		
+	rm -rf *.o mandelbrot XBenchmark benchmark fractal fractalmp		

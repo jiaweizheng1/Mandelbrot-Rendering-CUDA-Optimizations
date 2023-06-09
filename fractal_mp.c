@@ -49,7 +49,7 @@ Compute an entire image, writing each point to the given bitmap.
 Scale the image to the range (xmin-xmax,ymin-ymax).
 */
 
-void compute_image( double xmin, double xmax, double ymin, double ymax, int maxiter )
+void compute_image( double xmin, double xmax, double ymin, double ymax, int maxiter, int thread_count )
 {
 	int i,j;
 
@@ -58,6 +58,8 @@ void compute_image( double xmin, double xmax, double ymin, double ymax, int maxi
 
 	// For every pixel i,j, in the image...
 
+	# pragma omp parallel for num_threads(thread_count) \
+		schedule(dynamic) collapse(2)
 	for(j=0;j<height;j++) {
 		for(i=0;i<width;i++) {
 
@@ -71,13 +73,20 @@ void compute_image( double xmin, double xmax, double ymin, double ymax, int maxi
 			// Convert a iteration number to an RGB color.
 			// (Change this bit to get more interesting colors.)
 			int gray = 255 * iter / maxiter;
+			# pragma omp critical
 			gfx_color(gray,gray,gray);
 
 			// Plot the point on the screen.
+			# pragma omp critical
 			gfx_point(i,j);
 		}
 	}
 }
+
+void Usage (char* prog_name) {
+   fprintf(stderr, "usage: %s <thread_count>\n", prog_name);
+   exit(0);
+}  /* Usage */
 
 int main( int argc, char *argv[] )
 {
@@ -87,6 +96,13 @@ int main( int argc, char *argv[] )
 	double xmax= 0.5;
 	double ymin=-1.0;
 	double ymax= 1.0;
+
+	//int n;
+	int thread_count;
+
+	if (argc != 2) Usage(argv[0]);
+	thread_count = strtol(argv[1], NULL, 10);
+	//n = strtol(argv[2], NULL, 10);
 
 	// Maximum number of iterations to compute.
 	// Higher values take longer but have more detail.
@@ -103,12 +119,11 @@ int main( int argc, char *argv[] )
 	gfx_clear();
 
 	double start = omp_get_wtime();
-
 	// Display the fractal image
-	compute_image(xmin,xmax,ymin,ymax,maxiter);
-	double finish = omp_get_wtime();
-	double elapsed = finish - start;
-	printf("Elapsed time (serial) = %e seconds\n", elapsed);
+	compute_image(xmin,xmax,ymin,ymax,maxiter,thread_count);
+	double stop = omp_get_wtime();
+	double elapsed = stop - start;
+	printf("Elapsed time (openmp, %d threads) = %e seconds\n", thread_count, elapsed);
 
 	while(1) {
 		// Wait for a key or mouse click.
