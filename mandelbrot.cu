@@ -7,10 +7,10 @@
 #include <X11/Xutil.h>
 #include <omp.h>
 
-static int dim = 512;
 static int n = 512;
 static int m = 512;
-static int max_iter = 1000;
+static int dim = 1024;
+static int max_iter = 3000;
 static uint32_t *colors;
 uint32_t *dev_colors;
 // X11 data 
@@ -196,9 +196,9 @@ void usage(){
 
     printf("\tm\t\t=\tthreads per block (defaults to 512)\n");
 
-    printf("\tdim\t\t=\twidth/height of canvas in pixels (defaults to 512)\n");
+    printf("\tdim\t\t=\twidth/height of canvas in pixels (defaults to 1024)\n");
 
-    printf("\tmax_iter\t=\tmax iterations (defaults to 1000)\n\n");
+    printf("\tmax_iter\t=\tmax iterations (defaults to 3000)\n\n");
 
     exit(1);
 
@@ -301,7 +301,6 @@ int main(int argc, char** argv){
                 int win_x, win_y;
                 unsigned int mask_return;
 
-
                 XQueryPointer(dpy, win, &window_returned, &window_returned, &root_x, &root_y, &win_x, &win_y, &mask_return);
 
                 xcen = xcen + (win_x/(float)dim - 0.5) * scale;
@@ -319,7 +318,6 @@ int main(int argc, char** argv){
                 int root_x, root_y;
                 int win_x, win_y;
                 unsigned int mask_return;
-
 
                 XQueryPointer(dpy, win, &window_returned, &window_returned, &root_x, &root_y, &win_x, &win_y, &mask_return);
 
