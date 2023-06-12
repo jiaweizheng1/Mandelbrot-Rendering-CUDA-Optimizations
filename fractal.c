@@ -88,10 +88,10 @@ int main( int argc, char *argv[] )
 {
 	// The initial boundaries of the fractal image in x,y space.
 
-	double xmin=-1.5;
-	double xmax= 0.5;
-	double ymin=-1.0;
-	double ymax= 1.0;
+	double xmin=-2;
+	double xmax= 1;
+	double ymin=-1.5;
+	double ymax= 1.5;
 
 	int dim;
 	int maxiter;
