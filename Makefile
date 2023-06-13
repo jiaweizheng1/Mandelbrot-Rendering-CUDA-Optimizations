@@ -4,7 +4,7 @@ LFLAGS 		= -lX11 -lgomp -lm
 XFLAG 		= -D SHOW_X
 BFLAG 		= -D BENCHMARK
 NVCC 		= nvcc
-CUDA_FLAGS 	= -gencode=arch=compute_80,code=sm_80 -g
+CUDA_FLAGS 	= -gencode=arch=compute_75,code=sm_75 -g
 
 all : fractal  mandelbrot XBenchmark benchmark fractalmp
 
