@@ -138,17 +138,24 @@ __global__ void mandel_kernel(uint32_t *counts, double xmin, double ymin,
         int y = i / dim;
         double cr = xmin + x * step;
         double ci = ymin + y * step;
+
+        // use variables to store calculations that are used more than once
+        // to take advantage of the cache
         double crminusonefourth = cr - 0.25;
         double cisqr = ci*ci;
         double q = (crminusonefourth)*(crminusonefourth) + cisqr;
+
+        // check if in period-2 bulb
         if((cr + 1)*(cr + 1) + cisqr <= 0.0625)
         {
             counts[y * dim + x]  = colors[max_iter];
         }
+        // check if in cardiod
         else if (q*(q+crminusonefourth) <= 0.25*cisqr)
         {
             counts[y * dim + x]  = colors[max_iter];
         }
+        // else proceed with the normal escape algorithm
         else
         {
             counts[y * dim + x]  = colors[mandel_double(cr, ci, max_iter)];
@@ -161,17 +168,24 @@ __global__ void mandel_kernel(uint32_t *counts, double xmin, double ymin,
         int y = i / dim;
         double cr = xmin + x * step;
         double ci = ymin + y * step;
+
+        // use variables to store calculations that are used more than once
+        // to take advantage of the cache
         double crminusonefourth = cr - 0.25;
         double cisqr = ci*ci;
         double q = (crminusonefourth)*(crminusonefourth) + cisqr;
+
+        // check if in period-2 bulb
         if((cr + 1)*(cr + 1) + cisqr <= 0.0625)
         {
             counts[y * dim + x]  = colors[max_iter];
         }
+        // check if in cardiod
         else if (q*(q+crminusonefourth) <= 0.25*cisqr)
         {
             counts[y * dim + x]  = colors[max_iter];
         }
+        // else proceed with the normal escape algorithm
         else
         {
             counts[y * dim + x]  = colors[mandel_double(cr, ci, max_iter)];
