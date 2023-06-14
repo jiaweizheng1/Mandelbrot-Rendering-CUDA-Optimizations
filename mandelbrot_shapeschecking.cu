@@ -93,7 +93,7 @@ void init_colours(void) {
 	colors[max_iter] = 0;
 }
 
-void checkErr(cudaError_t err, char* msg){
+void checkErr(cudaError_t err, const char* msg){
     if (err != cudaSuccess){
         fprintf(stderr, "%s (error code %d: '%s'", msg, err, cudaGetErrorString(err));
         exit(EXIT_FAILURE);
