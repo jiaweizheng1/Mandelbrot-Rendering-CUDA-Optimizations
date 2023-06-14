@@ -7,8 +7,8 @@
 #include <X11/Xutil.h>
 #include <omp.h>
 
-static int n = 512;
-static int m = 512;
+static int n = 1024;
+static int m = 1024;
 static int dim = 1024;
 static int max_iter = 3000;
 static uint32_t *colors;
@@ -220,9 +220,9 @@ void usage(){
 
     printf("Usage: benchmark_shapeschecking [n] [m] [dim] [max_iter]\n");
 
-    printf("\tn\t\t=\tnumber of blocks (defaults to 512)\n");
+    printf("\tn\t\t=\tnumber of blocks (defaults to 1024)\n");
 
-    printf("\tm\t\t=\tthreads per block (defaults to 512)\n");
+    printf("\tm\t\t=\tthreads per block (defaults to 1024)\n");
 
     printf("\tdim\t\t=\twidth/height of canvas in pixels (defaults to 1024)\n");
 
