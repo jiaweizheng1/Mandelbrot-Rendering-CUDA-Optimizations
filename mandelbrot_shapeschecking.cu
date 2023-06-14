@@ -329,10 +329,14 @@ int main(int argc, char** argv){
                 int win_x, win_y;
                 unsigned int mask_return;
 
+                // get cursor position in window
                 XQueryPointer(dpy, win, &window_returned, &window_returned, &root_x, &root_y, &win_x, &win_y, &mask_return);
 
+                // transformation to obtain new x center and y center
                 xcen = xcen + (win_x/(float)dim - 0.5) * scale;
                 ycen = ycen + (win_y/(float)dim - 0.5) * scale;
+
+                // zoom in
                 scale *= 1.1111;
 
                 display_double(xcen, ycen, scale, dev_counts, dev_colors);
@@ -347,12 +351,15 @@ int main(int argc, char** argv){
                 int win_x, win_y;
                 unsigned int mask_return;
 
+                // get cursor position in window
                 XQueryPointer(dpy, win, &window_returned, &window_returned, &root_x, &root_y, &win_x, &win_y, &mask_return);
 
+                // transformation to obtain new x center and y center
                 xcen = xcen + (win_x/(float)dim - 0.5) * scale;
                 ycen = ycen + (win_y/(float)dim - 0.5) * scale;
                 scale *= .90;
 
+                // zoom in
                 display_double(xcen, ycen, scale, dev_counts, dev_colors);
             }
 
