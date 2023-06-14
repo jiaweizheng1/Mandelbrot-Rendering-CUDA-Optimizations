@@ -73,12 +73,13 @@ void compute_image( double xmin, double xmax, double ymin, double ymax, int maxi
 			// Convert a iteration number to an RGB color.
 			// (Change this bit to get more interesting colors.)
 			int gray = 255 * iter / maxiter;
-			# pragma omp critical
-			gfx_color(gray,gray,gray);
+			
+			// # pragma omp critical
+			// gfx_color(gray,gray,gray);
 
-			// Plot the point on the screen.
-			# pragma omp critical
-			gfx_point(i,j);
+			// // Plot the point on the screen.
+			// # pragma omp critical
+			// gfx_point(i,j);
 		}
 	}
 }

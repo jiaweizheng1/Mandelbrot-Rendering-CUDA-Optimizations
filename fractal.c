@@ -71,10 +71,11 @@ void compute_image( double xmin, double xmax, double ymin, double ymax, int maxi
 			// Convert a iteration number to an RGB color.
 			// (Change this bit to get more interesting colors.)
 			int gray = 255 * iter / maxiter;
-			gfx_color(gray,gray,gray);
 
-			// Plot the point on the screen.
-			gfx_point(i,j);
+			// gfx_color(gray,gray,gray);
+
+			// // Plot the point on the screen.
+			// gfx_point(i,j);
 		}
 	}
 }
