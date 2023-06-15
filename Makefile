@@ -29,6 +29,18 @@ mandelbrot_mathfunc : mandelbrot_mathfunc.cu
 benchmark_mathfunc : mandelbrot_mathfunc.cu
 	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mandelbrot_mathfunc.cu -o benchmark_mathfunc $(LFLAGS)
 
+mathfunc_double : mathfunc_double.cu
+	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mathfunc_double.cu -o mathfunc_double $(LFLAGS)
+
+benchmark_double : mathfunc_double.cu
+	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mathfunc_double.cu -o benchmark_double $(LFLAGS)
+
+mathfunc_float : mathfunc_float.cu
+	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mathfunc_float.cu -o mathfunc_float $(LFLAGS)
+
+benchmark_float : mathfunc_float.cu
+	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mathfunc_float.cu -o benchmark_float $(LFLAGS)
+
 fractal: fractal.c gfx.c
 	gcc fractal.c gfx.c -g -Wall --std=c99 -lX11 -lm -lgomp -o fractal
 
