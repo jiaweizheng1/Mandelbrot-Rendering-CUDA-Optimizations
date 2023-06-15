@@ -12,7 +12,8 @@ all : mandelbrot XBenchmark benchmark fractal fractalmp \
 	mandelbrot_mathfunc benchmark_mathfunc \
 	mathfunc_double benchmark_double \
 	mathfunc_float benchmark_float \
-	mandelbrot_w_openmp benchmark_w_openmp
+	mandelbrot_w_openmp benchmark_w_openmp \
+	mandelbrot_symmetry benchmark_symmetry
 
 mandelbrot : mandelbrot.cu
 	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mandelbrot.cu -o mandelbrot $(LFLAGS)
@@ -53,6 +54,12 @@ mandelbrot_w_openmp : mandelbrot_w_openmp.cu
 benchmark_w_openmp : mandelbrot_w_openmp.cu
 	$(NVCC) $(CUDA_FLAGS) $(BFLAG) $(OPENMPFLAG) mandelbrot_w_openmp.cu -o benchmark_w_openmp $(LFLAGS)
 
+mandelbrot_symmetry : mandelbrot_symmetry.cu
+	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mandelbrot_symmetry.cu -o mandelbrot_symmetry $(LFLAGS)
+
+benchmark_symmetry : mandelbrot_symmetry.cu
+	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mandelbrot_symmetry.cu -o benchmark_symmetry $(LFLAGS)
+
 fractal: fractal.c gfx.c
 	gcc fractal.c gfx.c -g -Wall --std=c99 -lX11 -lm -lgomp -o fractal
 
@@ -65,4 +72,5 @@ clean :
 		mandelbrot_mathfunc benchmark_mathfunc \
 		mathfunc_double mathfunc_float \
 		benchmark_double benchmark_float \
-		mandelbrot_w_openmp benchmark_w_openmp
+		mandelbrot_w_openmp benchmark_w_openmp \
+		mandelbrot_symmetry benchmark_symmetry
