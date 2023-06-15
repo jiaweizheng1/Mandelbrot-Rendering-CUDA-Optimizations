@@ -6,7 +6,7 @@ BFLAG 		= -D BENCHMARK
 NVCC 		= nvcc
 CUDA_FLAGS 	= -gencode=arch=compute_75,code=sm_75 -g
 
-all : mandelbrot XBenchmark benchmark fractal fractalmp mandelbrot_shapeschecking benchmark_shapeschecking 
+all : mandelbrot XBenchmark benchmark fractal fractalmp mandelbrot_shapeschecking benchmark_shapeschecking mathfunc_double benchmark_double
 
 mandelbrot : mandelbrot.cu
 	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mandelbrot.cu -o mandelbrot $(LFLAGS)
@@ -23,23 +23,11 @@ mandelbrot_shapeschecking : mandelbrot_shapeschecking.cu
 benchmark_shapeschecking : mandelbrot_shapeschecking.cu
 	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mandelbrot_shapeschecking.cu -o benchmark_shapeschecking $(LFLAGS)
 
-mandelbrot_mathfunc : mandelbrot_mathfunc.cu
-	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mandelbrot_mathfunc.cu -o mandelbrot_mathfunc $(LFLAGS)
-
-benchmark_mathfunc : mandelbrot_mathfunc.cu
-	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mandelbrot_mathfunc.cu -o benchmark_mathfunc $(LFLAGS)
-
 mathfunc_double : mathfunc_double.cu
 	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mathfunc_double.cu -o mathfunc_double $(LFLAGS)
 
 benchmark_double : mathfunc_double.cu
 	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mathfunc_double.cu -o benchmark_double $(LFLAGS)
-
-mathfunc_float : mathfunc_float.cu
-	$(NVCC) $(CUDA_FLAGS) $(XFLAG) mathfunc_float.cu -o mathfunc_float $(LFLAGS)
-
-benchmark_float : mathfunc_float.cu
-	$(NVCC) $(CUDA_FLAGS) $(BFLAG) mathfunc_float.cu -o benchmark_float $(LFLAGS)
 
 fractal: fractal.c gfx.c
 	gcc fractal.c gfx.c -g -Wall --std=c99 -lX11 -lm -lgomp -o fractal
@@ -48,4 +36,4 @@ fractalmp: fractal_mp.c gfx.c
 	gcc fractal_mp.c gfx.c -g -Wall --std=c99 -lX11 -lm -lgomp -fopenmp -o fractalmp
 
 clean :
-	rm -rf *.o mandelbrot XBenchmark benchmark fractal fractalmp mandelbrot_shapeschecking benchmark_shapeschecking	mandelbrot_mathfunc	
+	rm -rf *.o mandelbrot XBenchmark benchmark fractal fractalmp mandelbrot_shapeschecking benchmark_shapeschecking mathfunc_double benchmark_double
