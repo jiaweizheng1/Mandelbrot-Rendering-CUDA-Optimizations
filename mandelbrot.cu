@@ -138,7 +138,10 @@ __global__ void mandel_kernel(uint32_t *counts, double xmin, double ymin,
         int y = i / dim;
         double cr = xmin + x * step;
         double ci = ymin + y * step;
-        counts[y * dim + x]  = colors[mandel_double(cr, ci, max_iter)];
+        if(ci<0)
+        {
+            counts[y * dim + x]  = colors[mandel_double(cr, ci, max_iter)];
+        }
     }
     if (gridDim.x * blockDim.x * pix_per_thread < dim * dim
             && tId < (dim * dim) - (blockDim.x * gridDim.x)){
@@ -148,8 +151,7 @@ __global__ void mandel_kernel(uint32_t *counts, double xmin, double ymin,
         double cr = xmin + x * step;
         double ci = ymin + y * step;
         counts[y * dim + x]  = colors[mandel_double(cr, ci, max_iter)];
-    }
-    
+    } 
 }
 
 /* For each point, evaluate its colour */
