@@ -9,6 +9,9 @@ CUDA_FLAGS 	= -gencode=arch=compute_75,code=sm_75 -g
 
 all : mandelbrot XBenchmark benchmark fractal fractalmp \
 	mandelbrot_shapeschecking benchmark_shapeschecking \
+	mandelbrot_mathfunc benchmark_mathfunc \
+	mathfunc_double benchmark_double \
+	mathfunc_float benchmark_float \
 	mandelbrot_w_openmp benchmark_w_openmp
 
 mandelbrot : mandelbrot.cu
@@ -60,5 +63,6 @@ clean :
 	rm -rf *.o mandelbrot XBenchmark benchmark fractal fractalmp \
 		mandelbrot_shapeschecking benchmark_shapeschecking \
 		mandelbrot_mathfunc benchmark_mathfunc \
+		mathfunc_double mathfunc_float \
 		benchmark_double benchmark_float \
 		mandelbrot_w_openmp benchmark_w_openmp
