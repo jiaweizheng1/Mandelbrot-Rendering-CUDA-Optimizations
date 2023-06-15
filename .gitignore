@@ -1,0 +1,16 @@
+# compiled programs
+mandelbrot
+XBenchmark
+benchmark
+fractal
+fractalmp
+mandelbrot_shapeschecking
+benchmark_shapeschecking
+mandelbrot_mathfunc
+mandelbrot_double
+mandelbrot_float
+benchmark_mathfunc
+benchmark_double
+benchmark_float
+mandelbrot_w_openmp
+benchmark_w_openmp
