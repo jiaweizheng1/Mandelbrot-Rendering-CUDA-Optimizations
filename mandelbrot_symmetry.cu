@@ -200,7 +200,7 @@ static void display_double(double xcen, double ycen, double scale,
 
 void usage(){
 
-    printf("Usage: benchmark [n] [m] [dim] [max_iter]\n");
+    printf("Usage: benchmark_symmetry [n] [m] [dim] [max_iter]\n");
 
     printf("\tn\t\t=\tnumber of blocks (defaults to 512)\n");
 
